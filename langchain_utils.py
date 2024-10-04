@@ -31,7 +31,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from langchain_openai import ChatOpenAI
 
-# from table_details import table_chain as select_table
+from table_details import table_chain as select_table
 from prompts import final_prompt, answer_prompt
 
 import streamlit as st
@@ -41,19 +41,19 @@ def get_chain():
     db = SQLDatabase.from_uri(f"mysql+pymysql://{db_user}:{db_password}@{db_host}/{db_name}")    
     llm = ChatOpenAI(api_key= os.getenv("OPENAI_SECRET_KEY"), model="gpt-3.5-turbo", temperature=0)
     generate_query = create_sql_query_chain(llm, db,final_prompt) 
-    print("generate_query:: ", generate_query)
     execute_query = QuerySQLDataBaseTool(db=db)
-    print("answer_prompt:: ", answer_prompt)
     rephrase_answer = answer_prompt | llm | StrOutputParser()
     print("rephrase_answer:: ", rephrase_answer)
     # chain = generate_query | execute_query
-    # RunnablePassthrough.assign(table_names_to_use=select_table) |
+
     chain = (
+    RunnablePassthrough.assign(table_names_to_use=select_table) |
     RunnablePassthrough.assign(query=generate_query).assign(
         result=itemgetter("query") | execute_query
     )
     | rephrase_answer
 )
+
 
     return chain
 
@@ -70,10 +70,7 @@ def create_history(messages):
 def invoke_chain(question,messages):
     chain = get_chain()
     history = create_history(messages)
-    print("history: ", history)
-    print("Input Data: ", {"question": question,"messages":history.messages})
     response = chain.invoke({"question": question,"messages":history.messages})
-    print("response in invoke_chain: ", response)
     history.add_user_message(question)
     history.add_ai_message(response)
     return response
