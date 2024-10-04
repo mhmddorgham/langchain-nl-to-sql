@@ -22,7 +22,8 @@ from langchain_community.utilities.sql_database import SQLDatabase
 from langchain.chains import create_sql_query_chain
 from langchain_openai import ChatOpenAI
 from langchain_community.tools.sql_database.tool import QuerySQLDataBaseTool
-from langchain.memory import ChatMessageHistory
+# from langchain.memory import ChatMessageHistory
+from langchain_community.chat_message_histories import ChatMessageHistory
 
 from operator import itemgetter
 
