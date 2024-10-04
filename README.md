@@ -1,16 +1,16 @@
-# AI-Driven Natural Language to SQL Converter Using Langchain
+# AI-Driven Natural Language to SQL Converter Using Langchain 🚀
 
-## Overview
+## Overview 📖
 
 This project simplifies database interaction by converting natural language queries into SQL, allowing non-technical users to easily access and retrieve data from a MySQL database. Using AI technologies like Langchain and OpenAI embeddings, the system ensures accurate and efficient data querying.
 
-## Key Features
+## Key Features 🔑
 
 - **Natural Language Queries**: Allows users to input queries in plain language.
 - **SQL Conversion**: Converts natural language into SQL to retrieve data.
 - **Improved Query Accuracy**: Utilizes few-shot learning and OpenAI embeddings for better understanding and response over time.
 
-## Tech Stack
+## Tech Stack 🛠
 
 - **Langchain**: Natural language processing to SQL conversion.
 - **OpenAI embeddings**: Enhances semantic understanding.
@@ -18,7 +18,7 @@ This project simplifies database interaction by converting natural language quer
 - **Streamlit**: Provides a user-friendly interface.
 - **MySQL**: The database system used for data storage and retrieval.
 
-## End Result
+## End Result 🎯
 
 This solution empowers both technical and non-technical users:
 
@@ -27,7 +27,7 @@ This solution empowers both technical and non-technical users:
 
 The project is highly adaptable, scalable, and valuable across various business domains, promoting ease of access to critical data.
 
-## Installation and Usage
+## Installation and Usage ⚙️
 
 To run the application:
 
